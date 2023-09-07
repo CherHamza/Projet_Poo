@@ -6,7 +6,7 @@ use DateTime;
 class Users extends Model{
     private int $id;
     private string $name;
-    private string $pwd;
+    private string $password;
     private string $email;
     private DateTime $dateCreation;
 
@@ -54,9 +54,9 @@ class Users extends Model{
     /**
      * Get the value of pwd
      */ 
-    public function getPwd(): ?string
+    public function getPassword(): ?string
     {
-        return $this->pwd;
+        return $this->password;
     }
 
     /**
@@ -64,9 +64,9 @@ class Users extends Model{
      *
      * @return  self
      */ 
-    public function setPwd($pwd): self
+    public function setPassword($password): self
     {
-        $this->pwd = $pwd;
+        $this->password = $password;
 
         return $this;
     }

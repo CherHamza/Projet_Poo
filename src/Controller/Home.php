@@ -17,7 +17,7 @@ class Home extends AbstractController{
         $view = new Views();
         $view->setHead('head.html');
         $view->setHeader('header.html');
-        $view->setMain('formInscription.php');
+        $view->setMain('index.php');
         $view->setFooter('footer.html');
 
 

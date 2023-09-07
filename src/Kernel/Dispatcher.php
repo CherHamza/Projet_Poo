@@ -9,8 +9,15 @@ class Dispatcher {
 
     public function __construct()
     {
-        $this->controller = Config::CONTROLLER.'Home';
+        session_start();
+        
+        $this->controller = Config::CONTROLLER.'home';
         $this->method = 'index';
+
+    //   if(isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
+
+        
+
         if (isset($_GET['controller'])) {           
             if(class_exists(Config::CONTROLLER.$_GET['controller'])) {
                 $this->controller = Config::CONTROLLER.$_GET['controller'];
@@ -20,19 +27,18 @@ class Dispatcher {
             if (method_exists($this->controller, $_GET['method'])) {
                 $this->method = $_GET['method'];
             } else {
-                $this->controller = Config::CONTROLLER . 'Home';
-                // $this->method = 'index';
+                $this->controller = Config::CONTROLLER . 'home';
+                $this->method = 'index';
             }
         }
     }
-
+    
     public function Dispatch() {
-        // echo 'je suis ds le controller ' .$this->controller;
-        // die;
+      
+    
         $method = $this->method;
         $cont = new $this->controller;
-        // $cont->index();
         $cont->$method();
-
     }
+    
 }

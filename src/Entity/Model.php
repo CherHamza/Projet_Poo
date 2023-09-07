@@ -22,13 +22,15 @@ class Model  {
         return static::class;
     }
 
-    private static function Execute($sql, $params = [])
+    protected static function Execute($sql,  array $params = null)
     {
+        $db = DataBase::getInstance();
+
         if (empty($params)) {
-            $pdostatement = DataBase::getInstance()->query($sql);
+            $pdostatement = $db->query($sql);
             return $pdostatement;
         } else {
-            $pdostatement = DataBase::getInstance()->prepare($sql);
+            $pdostatement = $db->prepare($sql);
             $pdostatement->execute($params);
             return $pdostatement;
         }
@@ -58,8 +60,14 @@ class Model  {
         return $result[0];
     }
 
+    public static function getByEmail(string $email)
+    {
+        $sql = "select * from ". self::getEntityName() . " where email= ?";
+        $result = self::Execute($sql, [$email])->fetchAll(PDO::FETCH_CLASS, self::getClassName());
 
-
+        return $result[0];
+    }
+   
 
 
     public static function create($data)
@@ -101,6 +109,7 @@ class Model  {
     
         return $stmt->execute();
     }
+    
     
     
         

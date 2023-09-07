@@ -18,7 +18,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
                 </form>
-                <p class="mt-3">Déjà inscrit ? <a href="?controller=login&method=index">Connectez-vous ici</a></p>
+                <p class="mt-3">Déjà inscrit ? <a href="?controller=Authentificator&method=login">Connectez-vous ici</a></p>
             </div>
         </div>
     </div>
