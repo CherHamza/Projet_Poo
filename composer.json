@@ -1,0 +1,15 @@
+{
+    "name": "hamza/tp-poo",
+    "autoload": {
+        "psr-4": {
+            "hamza\\poo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CherHamza",
+            "email": "hamzacheracher1@hotmail.fr"
+        }
+    ],
+    "require": {}
+}
