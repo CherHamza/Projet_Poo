@@ -16,7 +16,7 @@
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary">Se connecter</button>
                 </form>
-                <p class="mt-3">Vous n'avez pas de compte ? <a href="?controller=User&method=create">Inscrivez-vous ici</a></p>
+                <p class="mt-3">Vous n'avez pas de compte ? <a href="?controller=User&method=createUser">Inscrivez-vous ici</a></p>
             </div>
             </div>
         </div>

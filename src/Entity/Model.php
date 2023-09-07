@@ -73,13 +73,13 @@ class Model  {
     public static function create($data)
     {
         $db = Database::getInstance();
+        $sql = "INSERT INTO " . self::getEntityName(). "(name, password, email) VALUES (:name, :password, :email)";
     
-        $stmt = $db->prepare("INSERT INTO " . self::getEntityName()." (id, author, type, description) VALUES (:title, :author, :type, :description)");
+        $stmt = $db->prepare($sql);
     
-        $stmt->bindParam(':title', $data['title'], PDO::PARAM_STR);
-        $stmt->bindParam(':author', $data['author'], PDO::PARAM_STR);
-        $stmt->bindParam(':type', $data['type'], PDO::PARAM_STR);
-        $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+        $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
+        $stmt->bindParam(':password', $data['password'], PDO::PARAM_STR);
+        $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
     
         return $stmt->execute();
     }

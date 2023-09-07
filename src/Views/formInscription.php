@@ -3,20 +3,20 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <h2>Inscription</h2>
-                <form action="" method="post">
+                <form action="?controller=User&method=createUser" method="POST">
                     <div class="form-group">
-                        <label for="name_user">Nom d'utilisateur :</label>
-                        <input type="text" class="form-control" name="name_user" required>
+                        <label for="name">Nom d'utilisateur :</label>
+                        <input type="text" class="form-control" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="password_user">Mot de passe :</label>
-                        <input type="password" class="form-control" name="password_user" required>
+                        <label for="password">Mot de passe :</label>
+                        <input type="password" class="form-control" name="password" required>
                     </div>
                     <div class="form-group">
-                        <label for="email_user">Email :</label>
-                        <input type="email" class="form-control" name="email_user" required>
+                        <label for="email">Email :</label>
+                        <input type="email" class="form-control" name="email" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    <button name="submit" type="submit" class="btn btn-primary">S'inscrire</button>
                 </form>
                 <p class="mt-3">Déjà inscrit ? <a href="?controller=Authentificator&method=login">Connectez-vous ici</a></p>
             </div>
