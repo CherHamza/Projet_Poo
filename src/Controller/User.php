@@ -16,13 +16,12 @@ class User extends AbstractController {
                     if(isset($_POST['password']) && $_POST['password']!==''){
                     
 
-                    var_dump($_POST['email']);
+                
 
-                    $pwd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $pwd = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
             
-                    
-            $result= false;
+         $result= false;
             // Appelez la méthode `create` du modèle User pour insérer l'utilisateur dans la base de données
             $result = Users::create([
                 'name' => $_POST['name'],

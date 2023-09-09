@@ -19,7 +19,7 @@ class Dispatcher {
         
 
         if (isset($_GET['controller'])) {           
-            if(class_exists(Config::CONTROLLER.$_GET['controller'])) {
+            if(class_exists(Config::CONTROLLER.$_GET['controller'])) { //& session start condition//
                 $this->controller = Config::CONTROLLER.$_GET['controller'];
             }
         }

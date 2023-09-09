@@ -12,19 +12,20 @@ class Home extends AbstractController{
     public function index()
     {
 
-        $user= Users::getById(1);
+        //  $user= Users::getById(1);
         
         $view = new Views();
         $view->setHead('head.html');
         $view->setHeader('header.html');
         $view->setMain('index.php');
         $view->setFooter('footer.html');
+        
 
 
         $view->render([
             'flash' => $this->getFlashMessage(),
             'titlePage' => 'Page HomeController',
-            'id'=> $user,
+            // 'id_user'=> $user,
         ]);
     }
 

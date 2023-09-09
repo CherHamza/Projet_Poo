@@ -32,7 +32,7 @@ class Authentificator extends AbstractController {
                            
                                 // Redirigez ou effectuez d'autres actions en fonction de votre application
                                 
-                                header('Location: index.php');
+                                header('Location: index.php?controller=Project&method=index');
                                 // exit;
                         } else {
 
