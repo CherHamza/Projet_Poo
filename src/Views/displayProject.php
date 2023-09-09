@@ -84,9 +84,43 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                             <button  class="btn btn-primary" >Ajouter la tâche</button>
-                        </div>
-                    </form>
+                           
+                            <!-- Lien hypertexte avec une classe de bouton Bootstrap -->
+                            <a href="index.php?controller=User&method=createUser" class="btn btn-primary" id="inscriptionBtn">Inscription</a>
+
+                             
+                        <!-- Div pour afficher le formulaire d'inscription -->
+                             <div id="inscriptionForm"></div>
+                            <style>
+                              #inscriptionForm {
+                                 width: 80%; 
+                                 margin: 0 auto; } </style>
+                                                
+                        <!-- JavaScript pour charger le formulaire d'inscription via AJAX -->
+                         <script>
+                                                    
+                        document.getElementById('inscriptionBtn').addEventListener('click', function (e) {
+                            
+                                e.preventDefault(); // Empêche le comportement par défaut du lien
+                            //  AJAX pour charger le formulaire d'inscription
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'index.php?controller=User&method=createUser', true);
+                            xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                document.getElementById('inscriptionForm').innerHTML = xhr.responseText;
+                            }
+                        };
+                        xhr.send();
+                        
+
+                    });   
+                        
+                        </script>
+
+
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+</div>

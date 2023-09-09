@@ -114,10 +114,14 @@ class Model  {
     }
     
     
-    
+    public static function getByName($name) {
+        $sql = "SELECT * FROM " . self::getEntityName() . " WHERE name = ?";
+        $result = self::Execute($sql, [$name])->fetchAll(PDO::FETCH_CLASS, self::getClassName());
+
+        return $result[0];
         
     }
         
     
 
-
+}

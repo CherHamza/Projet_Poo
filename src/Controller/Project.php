@@ -102,6 +102,7 @@ class Project extends AbstractController {
 
 
      public function displayProject(){
+    
 
         $id = $_GET['id'];
         $project = Projects::getById($id);
@@ -125,6 +126,7 @@ class Project extends AbstractController {
             'priority'=> $selectpriority,
             'users'=>  $selectusers,
             'tasks'=> $tasks,
+            
         ]);
 
 

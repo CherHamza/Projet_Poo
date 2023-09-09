@@ -1,9 +1,9 @@
 <main>
 <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h2>Inscription</h2>
-                <form action="?controller=User&method=createUser" method="POST">
+                <form action="?controller=User&method=createUser" method="POST" id="formInscription">
                     <div class="form-group">
                         <label for="name">Nom d'utilisateur :</label>
                         <input type="text" class="form-control" name="name" required>
