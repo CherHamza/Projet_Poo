@@ -5,24 +5,34 @@
             Ajouter une tâche
         </button>
 
-        <h3><?php echo $project->getTitle() ?></h3>
-        <p class="lead"><?php echo $project->getDescription(); ?></p>
-
+        <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3><?php echo $project->getTitle() ?></h3>
+            <p class="lead"><?php echo $project->getDescription(); ?></p>
+        </div>
+        <div class="col-md-6">
         <h3>Mes Tâches</h3>
 
-        <?php foreach($tasks as $task) : ?>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <p class="card-text">Projet: <?php echo $task->getId_project() ?></p>
-                    <p class="card-title">Titre tâches: <?php echo $task->getTitle() ?></p>
-                    <p class="card-text">Description: <?php echo $task->getDescription() ?></p>
-                    <p class="card-text">Collaborateur: <?php echo $task->getId_user() ?></p>
-                    <p class="card-text">Statut: <?php echo $task->getId_status() ?></p>
-                    <p class="card-text">Priorité: <?php echo $task->getId_priority() ?></p>
-                </div>
-            </div>
-        <?php endforeach ?>
-    
+<?php foreach($tasks as $task) : ?>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text">Projet: <?php echo $task->getId_project() ?></p>
+            <p class="card-title">Titre tâches: <?php echo $task->getTitle() ?></p>
+            <p class="card-text">Description: <?php echo $task->getDescription() ?></p>
+            <p class="card-text">Collaborateur: <?php echo $task->getId_user() ?></p>
+            <p class="card-text">Statut: <?php echo $task->getId_status() ?></p>
+            <p class="card-text">Priorité: <?php echo $task->getId_priority() ?></p>
+        </div>
+    </div>
+<?php endforeach ?>
+
+        </div>
+    </div>
+</div>
+
+
+        
 
     
 
@@ -86,7 +96,7 @@
                             <button  class="btn btn-primary" >Ajouter la tâche</button>
                            
                             <!-- Lien hypertexte avec une classe de bouton Bootstrap -->
-                            <a href="index.php?controller=User&method=createUser" class="btn btn-primary" id="inscriptionBtn">Inscription</a>
+                            <a href="index.php?controller=User&method=createUser" class="btn btn-dark " id="inscriptionBtn">Inscription</a>
 
                              
                         <!-- Div pour afficher le formulaire d'inscription -->
@@ -101,7 +111,7 @@
                                                     
                         document.getElementById('inscriptionBtn').addEventListener('click', function (e) {
                             
-                                e.preventDefault(); // Empêche le comportement par défaut du lien
+                                e.preventDefault(); 
                             //  AJAX pour charger le formulaire d'inscription
                             var xhr = new XMLHttpRequest();
                             xhr.open('POST', 'index.php?controller=User&method=createUser', true);

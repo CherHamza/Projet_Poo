@@ -31,7 +31,6 @@ class User extends AbstractController {
             
     
             if ($result) {
-                // L'inscription a réussi, vous pouvez rediriger vers la page de connexion ou effectuer d'autres actions
                $this->setFlashMessage("Votre compte a bien été créé", "success")   ;             
             }
     

@@ -25,12 +25,12 @@ class Authentificator extends AbstractController {
                             
                                 // Utilisateur authentifié, ouverture de la session
                                 session_start();
-                                // Enregistrez les informations de l'utilisateur dans la session si nécessaire
+                                // Enregistrement des infos de l'utilisateur dans la session 
                                 $_SESSION['user_id'] = $userVerification->getId();
                                 $_SESSION['user_email'] = $userVerification->getEmail();
-                            var_dump($_SESSION);
+                            // var_dump($_SESSION);
                            
-                                // Redirigez ou effectuez d'autres actions en fonction de votre application
+                                // Redirection 
                                 
                                 header('Location: index.php?controller=Project&method=index');
                                 // exit;

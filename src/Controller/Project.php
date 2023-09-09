@@ -50,9 +50,9 @@ class Project extends AbstractController {
             session_start();
         }
     
-        // Vérifiez si l'utilisateur est connecté en vérifiant si $_SESSION['user_id'] est défini
+        // Vérifie si l'utilisateur est connecté en vérifiant si $_SESSION['user_id'] est défini
         if (isset($_SESSION['user_id'])) {
-            $id = $_SESSION['user_id']; // Récupérez l'ID de l'utilisateur connecté
+            $id = $_SESSION['user_id']; // Récupére l'ID de l'utilisateur connecté
     
             if(isset($_POST['submit'])) {
                 if(isset($_POST['description']) && $_POST['description']!==''){
@@ -68,7 +68,7 @@ class Project extends AbstractController {
                             'id_user'=> $id, 
                         ]);
     
-                        // Gérez le résultat de la création du projet ici
+                        // Gere le résultat de la création du projet
                         if ($result) {
                             $this->setFlashMessage("Votre projet a bien été créé", "success");
                         } else {
