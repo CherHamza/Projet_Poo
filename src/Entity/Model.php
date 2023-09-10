@@ -36,6 +36,14 @@ class Model  {
         }
     }
     
+    public static function getUserTask($id)
+    {
+        $sql = "SELECT * FROM " . self::getEntityName() . " where id_user = $id";
+        return self::Execute($sql)->fetchAll(PDO::FETCH_CLASS, self::getClassName());
+
+
+    }
+
 
 
     public static function getAll()
@@ -74,6 +82,51 @@ class Model  {
 
         return $result[0];
     }
+    /**
+     * Request for get NameStatus by task
+     *
+     * @param integer $id_status
+     */
+    public static function getNameStatus(int $id_status){
+        $sql = "SELECT DISTINCT  tasks.id_status, status.name 
+            FROM tasks 
+            INNER JOIN status ON tasks.id_status = status.id 
+            WHERE tasks.id_status = $id_status";
+        $result = self::Execute($sql)->fetchAll(PDO::FETCH_CLASS, self::getClassName());
+       
+        return $result;
+    }
+
+    /**
+     * Request for get NamePriority by task
+     *
+     * @param integer $id_priority
+     */
+    public static function getNamePriority(int $id_priority){
+        $sql = "SELECT DISTINCT  tasks.id_priority, priority.name 
+            FROM tasks 
+            INNER JOIN priority ON tasks.id_priority = priority.id 
+            WHERE tasks.id_priority = $id_priority";
+        $result = self::Execute($sql)->fetchAll(PDO::FETCH_CLASS, self::getClassName());
+        
+
+        return $result;
+    }
+
+    /**
+     * Request for get NameUser by task
+     *
+     * @param integer $id_user
+     */
+    public static function getNameUser(int $id_user){
+        $sql = "SELECT DISTINCT  tasks.id_user, users.name 
+            FROM tasks 
+            INNER JOIN users ON tasks.id_user = users.id 
+            WHERE tasks.id_user = $id_user";
+        $result = self::Execute($sql)->fetchAll(PDO::FETCH_CLASS, self::getClassName());
+        
+        return $result;
+    }
    
     public static function create($data)
     {
@@ -85,8 +138,7 @@ class Model  {
         var_dump($sql);
         return self::Execute($sql, $data);
     }
-
-
+  
 
 
     public static function delete(int $id)

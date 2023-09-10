@@ -15,10 +15,12 @@ class Project extends AbstractController {
         $getStatus = Status::getAll();
         $getPriority = Priority::getAll();
 
+
     //   $getAllProjects= Projects::getAll();
     //    var_dump($_SESSION);
 
         $projects = Projects::getProjectUser($_SESSION['user_id']);
+        $taskUser = Tasks::getUserTask($_SESSION['user_id']);
 
        
 
@@ -36,6 +38,7 @@ class Project extends AbstractController {
             'projects'=>$projects,
             'status'=>$getStatus,
             'priority'=>$getPriority,
+            'tasks'=>$taskUser,
 
 
             
