@@ -6,77 +6,74 @@ use hamza\poo\Entity\Users;
 
 ?>
 
-<main class="container">
-        <h1>Interface gestion projet</h1>
-
-        
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Ajouter une tâche
-        </button>
-
-        <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-6">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter une Tâche
+        </button>
+        <a href="/index.php?controller=project&method=deleteProject&id=<?php echo $project->getId() ?>" class='btn btn-danger ' 
+        onclick='Supp(this.href); return(false);'
+        >Supprimer le Projet</a>
+
             <h3><?php echo $project->getTitle() ?></h3>
             <p class="lead"><?php echo $project->getDescription(); ?></p>
         </div>
         <div class="col-md-6">
-        <h3>Mes Tâches</h3>
+            <h3>Mes Tâches</h3>
+           
+            <?php foreach ($tasks as $task) :  ?>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalUpdateTask">
+                    Mettre à jour la tâche
+                </button>
+                <a class="btn btn-primary" onclick='Supp(this.href); return(false);' href="index.php?controller=Project&method=deleteTask&id=<?php echo $task->getId() ?> ">Supprimer la tâche</a>
 
-<?php foreach($tasks as $task) : ?>
-    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalUpdateTask">
-  Mettre à jour la tâche
-</button>
-    <div class="card mb-3">
-        <div class="card-body">
-            <p class="card-text">Projet: <?php echo $task->getId_project() ?></p>
-            <p class="card-title">Titre tâches: <?php echo $task->getTitle() ?></p>
-            <p class="card-text">Description: <?php echo $task->getDescription() ?></p>
-            <p class="card-text">Collaborateur: 
-            <?php  foreach(users::getNameUser($task->getId_user()) as $user) : ?> 
-                <?php echo $user->getName() ?></p>
-                <?php endforeach; ?>
-            <p class="card-text">Statut:
-              <?php  foreach(status::getNameStatus($task->getId_status()) as $statu) : ?> 
-            <?php echo $statu->getName() ?></p>
-            <?php endforeach; ?>
-            
-            <p class="card-text">Priorité:
-            <?php  foreach(priority::getNamePriority($task->getId_priority()) as $priorit) : ?> 
-            <?php echo $priorit->getName() ?></p>
-            <?php endforeach; ?>
+              
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="card-text">Projet: <?php echo $task->getId_project() ?></p>
 
+                        <p class="card-title">Titre tâches: <?php echo $task->getTitle() ?></p>
+                        <p class="card-text">Description: <?php echo $task->getDescription() ?></p>
+                        <p class="card-text">Collaborateur:
+                            <?php foreach (users::getNameUser($task->getId_user()) as $user) : ?>
+                                <?php echo $user->getName() ?>
+                            <?php endforeach; ?>
+                        </p>
+                        <p class="card-text">Statut:
+                            <?php foreach (status::getNameStatus($task->getId_status()) as $statu) : ?>
+                                <?php echo $statu->getName() ?>
+                            <?php endforeach; ?>
+                        </p>
+                        <p class="card-text">Priorité:
+                            <?php foreach (priority::getNamePriority($task->getId_priority()) as $priorit) : ?>
+                                <?php echo $priorit->getName() ?>
+                            <?php endforeach; ?>
+                        </p>
+                    </div>
+                </div>
             <?php endforeach; ?>
-        </div>
-    </div>
-
 
         </div>
     </div>
 </div>
 
 
-        
-
-    
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
 </main>
-
-
-    <!-- Modal -->
+    <!-- Modal ajout tâche -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addTaskModalLabel">Ajouter une tâche</h5>
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                
                     <form action="index.php?controller=Project&method=createTask" method="POST">
+
                         <input type="hidden" value=" <?php echo $project->getId() ?>" name="idProject">
                         <div class="form-group">
                             <label for="taskTitle">Titre de la tâche</label>
@@ -120,7 +117,6 @@ use hamza\poo\Entity\Users;
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                             <button  class="btn btn-primary" >Ajouter la tâche</button>
                            
-                            <!-- Lien hypertexte avec une classe de bouton Bootstrap -->
                             <a href="index.php?controller=User&method=createUser" class="btn btn-dark " type="submit" id="inscriptionBtn">Inscription</a>
 
                              
@@ -162,12 +158,7 @@ use hamza\poo\Entity\Users;
 </div>
 </div>
 
-
-
-
 <!-- Modal Modification tâche-->
-
-
 
 <div class="modal fade" id="ModalUpdateTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -177,7 +168,7 @@ use hamza\poo\Entity\Users;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-         <form action="index.php?controller=Project&method=createTask" method="POST">
+         <form action="index.php?controller=Project&method=update&id=<?php echo $task->getId() ?>" method="POST">
 
          <input type="hidden" value=" <?php echo $project->getId() ?>" name="idProject">
                         <div class="form-group">

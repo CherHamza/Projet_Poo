@@ -1,5 +1,5 @@
 <?php
-// DESIGN PATERN SINGLETON(UNE CLASSE)
+// DESIGN PATERN SINGLETON
 namespace hamza\poo\Kernel;
 
 use PDO;
@@ -35,9 +35,5 @@ class DataBase extends PDO {
         }
         return self::$instance;
     }
-
-    
-
-   
 
 }

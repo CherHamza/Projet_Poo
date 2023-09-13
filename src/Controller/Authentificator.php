@@ -13,7 +13,7 @@ class Authentificator extends AbstractController {
 
             if(isset($_POST['email']) && $_POST['email']!==''){
                 if(isset($_POST['password']) && $_POST['password']!==''){
-                    var_dump($_POST['email']);
+                    
                     //on récupère l'email enregistré sur la db
                     $userVerification = Users::getByEmail($_POST['email']);
                    
@@ -23,7 +23,7 @@ class Authentificator extends AbstractController {
                         
                             
                             
-                                // Utilisateur authentifié, ouverture de la session
+                                // si Utilisateur authentifié, ouverture de la session
                                 session_start();
                                 // Enregistrement des infos de l'utilisateur dans la session 
                                 $_SESSION['user_id'] = $userVerification->getId();
@@ -40,10 +40,8 @@ class Authentificator extends AbstractController {
 
                         }
 
-                    }else{
-                        $this->setFlashMessage('votre email ou votre mdp est inccorect', 'error');
-                }
                     }
+                }
                    
             }
    
@@ -87,7 +85,7 @@ class Authentificator extends AbstractController {
         }
 
     }
-
+  
    
 
-    }
+}

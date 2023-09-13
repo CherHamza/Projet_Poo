@@ -22,7 +22,7 @@ class User extends AbstractController {
 
             
          $result= false;
-            // Appelez la méthode `create` du modèle User pour insérer l'utilisateur dans la base de données
+            // j'appele la méthode `create` du modèle User pour enregistrer l'utilisateur dans la bd
             $result = Users::create([
                 'name' => $_POST['name'],
                 'password' => $pwd,

@@ -45,7 +45,6 @@ class Model  {
     }
 
 
-
     public static function getAll()
 {
     
@@ -63,7 +62,7 @@ class Model  {
 {
     
     $sql = "SELECT * FROM " . self::getEntityName() . " where id_user=$id_user";
-    // var_dump($sql);
+   
     return self::Execute($sql)->fetchAll(PDO::FETCH_CLASS, self::getClassName());
 }
 
@@ -97,11 +96,6 @@ class Model  {
         return $result;
     }
 
-    /**
-     * Request for get NamePriority by task
-     *
-     * @param integer $id_priority
-     */
     public static function getNamePriority(int $id_priority){
         $sql = "SELECT DISTINCT  tasks.id_priority, priority.name 
             FROM tasks 
@@ -113,11 +107,7 @@ class Model  {
         return $result;
     }
 
-    /**
-     * Request for get NameUser by task
-     *
-     * @param integer $id_user
-     */
+    
     public static function getNameUser(int $id_user){
         $sql = "SELECT DISTINCT  tasks.id_user, users.name 
             FROM tasks 
@@ -135,36 +125,52 @@ class Model  {
         $placeholders = ':' . implode(', :', array_keys($data));
 
         $sql = "INSERT INTO " . self::getEntityName() . " ($columns) VALUES ($placeholders)";
-        var_dump($sql);
+    
         return self::Execute($sql, $data);
     }
+
   
 
 
     public static function delete(int $id)
     {
-        $sql = "delete from " . self::getEntityName() . " where id=$id";
-        return DataBase::getInstance()->exec($sql);
-    }  
+        $sql = "delete from " . self::getEntityName() . " where id= ?";
+        return self::Execute($sql, [$id]);
+
+    }
+      
 
 
-
-    
-    
-    public static function update(int $id, array $data)
-    {
-        $db = Database::getInstance();
-        $sql="UPDATE ". self::getEntityName() ." SET title = :title, password = :password, email = :email WHERE id = :id";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
-        $stmt->bindParam(':password', $data['password'], PDO::PARAM_STR);
-        $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
+    // public static function update(int $id, array $data)
+    // {
+    //     $db = Database::getInstance();
+    //     $sql="UPDATE ". self::getEntityName() ." SET title = :title, password = :password, email = :email WHERE id = :id";
+    //     $stmt = $db->prepare($sql);
+    //     $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+    //     $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
+    //     $stmt->bindParam(':password', $data['password'], PDO::PARAM_STR);
+    //     $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
        
     
-        return $stmt->execute();
+    //     return $stmt->execute();
+    // }  
+    public static function updateTask($id, $title, $description, $id_user, $id_priority, $id_status, $id_project)
+    {
+        
+            $db = Database::getInstance();
+            $sql = "UPDATE tasks SET title = :title, description = :description, id_user = :id_user, id_priority = :id_priority, id_project = :id_project, id_status = :id_status WHERE id = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+            $stmt->bindParam(':id_priority', $id_priority, PDO::PARAM_INT);
+            $stmt->bindParam(':id_status', $id_status, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_project', $id_project, PDO::PARAM_INT);
+
+            
+            return $stmt->execute();
     }
-    
     
     public static function getByName($name) {
         $sql = "SELECT * FROM " . self::getEntityName() . " WHERE name = ?";
